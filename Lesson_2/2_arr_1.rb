@@ -1,6 +1,1 @@
-arr = []
-i = 10
-until i > 100 do
-  arr.push(i)
-  i += 5
-end
+arr = (5..100).step(5).to_a

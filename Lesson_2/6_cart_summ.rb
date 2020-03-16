@@ -1,4 +1,4 @@
-cart = Hash.new
+cart = {}
 loop do
   puts 'Введите название товара'
   product = gets.chomp
@@ -7,11 +7,11 @@ loop do
   price = gets.chomp.to_f
   puts 'Введите колличество товара'
   quantity = gets.chomp.to_f
-  cart[product]={price => quantity}
+  cart[product]={ price => quantity }
 end
 sum = 0
 puts cart
-cart.each do |product, price|
+cart.each do |product,price|
   price.each do |a,b| 
     line_sum = a * b
     puts "#{product}, сумма за товар = #{line_sum}"
