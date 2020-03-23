@@ -10,7 +10,7 @@ class Route
 
   def list
     puts @first_station.name
-    @stations.each {|station| puts station.name} if @stations != nil
+    @stations.each {|station| puts station.name}
     puts @last_station.name
   end
 
@@ -23,10 +23,7 @@ class Route
   end
 
   def full_route
-    full_route = []
-    full_route << @first_station
-    @stations.each {|station| full_route << station} if @stations != nil
-    full_route << @last_station
+    [@first_station, @stations, @last_station].flatten
   end
 
 end

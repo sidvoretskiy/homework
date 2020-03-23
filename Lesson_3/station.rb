@@ -4,10 +4,10 @@ class Station
 
   def initialize(name)
     @name = name
+    @trains = []
   end
 
   def accept(train)
-    @trains = [] if @trains == nil
     @trains << train
   end
 
@@ -15,16 +15,16 @@ class Station
     if @trains == nil or @trains == []
       puts 'На станции нет поездов'
     else
-    @trains.each {|train| puts "#{train}"}
+    @trains.each {|train| puts train}
     end
   end
 
   def list_with_type(type)
-    if @trains == nil or @trains == []
+    if @trains.empty?
       puts 'На станции нет поездов'
     else
     @trains.each do |train|
-       puts "#{train.number}" if train.type == type
+       puts train.number if train.type == type
      end
     end
   end
