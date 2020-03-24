@@ -12,7 +12,7 @@ class Station
   end
 
   def list
-    if @trains == nil or @trains == []
+    if @trains.empty?
       puts 'На станции нет поездов'
     else
     @trains.each {|train| puts train}
@@ -23,9 +23,7 @@ class Station
     if @trains.empty?
       puts 'На станции нет поездов'
     else
-    @trains.each do |train|
-       puts train.number if train.type == type
-     end
+      @trains.select {|train| train.type == type}
     end
   end
 

@@ -41,13 +41,11 @@ class Train
   end
 
   def next_station
-    current_station_index = @route.full_route.find_index(@current_station)
-    @route.full_route[current_station_index + 1] if current_station_index != (@route.full_route.size - 1)
+    @route.full_route[@route.full_route.find_index(@current_station) + 1] if !@route.last_station?(@current_station)
   end
 
   def previous_station
-    current_station_index = @route.full_route.find_index(@current_station)
-    @route.full_route[current_station_index - 1] if current_station_index != 0
+    @route.full_route[@route.full_route.find_index(@current_station) - 1] if !@route.first_station?(@current_station)
   end
 
   def move_next

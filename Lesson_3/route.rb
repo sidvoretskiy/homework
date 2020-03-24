@@ -26,4 +26,12 @@ class Route
     [@first_station, @stations, @last_station].flatten
   end
 
+  def first_station?(current_station)
+    self.full_route.find_index(current_station) == 0
+  end
+
+  def last_station?(current_station)
+    self.full_route.find_index(current_station) == self.full_route.size - 1
+  end
+
 end
