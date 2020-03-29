@@ -3,11 +3,13 @@ class Train
   attr_accessor :speed, :carriages, :current_station
   attr_reader :type, :number, :route
   @@trains = []
+  @@trains_hash = {}
   def initialize(number, type)
     @number = number
     @carriages = []
     @type = type
     @speed = 0
+    @@trains_hash.store(self.number, self)
     @@trains << self
     register_instance
   end
@@ -71,7 +73,7 @@ class Train
   end
 
   def self.find(number)
-    @@trains.find {|train| train.number == number}
+    @@trains_hash[number]
   end
 
 end

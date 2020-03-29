@@ -4,20 +4,16 @@ module InstanceCounter
     base.send :include, InstanceMethods
   end
   module ClassMethods
-    @@instances = []
-    def instances
-      @@instances.count {|x| x == self}
-    end
-    private
-    def instances_inc
-      @@instances << self
-    end
+
+    attr_accessor :instances
+    
   end
 
   module InstanceMethods
     private
     def register_instance
-      self.class.send :instances_inc
+      self.class.instances ||= []
+      self.class.instances << self
     end
   end
 end
