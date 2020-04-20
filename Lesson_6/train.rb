@@ -1,5 +1,5 @@
 class Train
-  include Company, InstanceCounter
+  include Company, InstanceCounter, Validator
   attr_accessor :speed, :carriages, :current_station
   attr_reader :type, :number, :route
   TYPES = ['PassengerTrain','CargoTrain']

@@ -1,5 +1,6 @@
 class Route
-  include InstanceCounter
+  include InstanceCounter, Validator
+  include Validator
   @@routes = []
   attr_reader :first_station, :last_station, :stations
 
@@ -58,17 +59,10 @@ class Route
     @@routes.each_with_index {|route, index| puts "#{index + 1} - маршурт: #{route.name}"}
   end
 
-  def valid?
-    validate!
-    true
-    rescue 
-    false
-  end
-
   protected
 
   def validate!
-    raise "Object is not a station" if first_station.class != Station or last_station.class != Station
+    raise "Object is not a station" if first_station.class != Station && last_station.class != Station
   end
 
 end

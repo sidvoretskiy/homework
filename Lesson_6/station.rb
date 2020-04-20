@@ -1,5 +1,5 @@
 class Station
-  include InstanceCounter
+  include InstanceCounter, Validator
   @@stations = []
   attr_reader :name
   NAME_FORMAT = /[a-zа-я]+/i
@@ -48,13 +48,6 @@ class Station
 
   def self.stations_names
     @@stations.each_with_index {|station, index| puts "#{index + 1} - станция: #{station.name}"}
-  end
-
-  def valid?
-    validate!
-    true
-    rescue 
-    false
   end
 
   protected

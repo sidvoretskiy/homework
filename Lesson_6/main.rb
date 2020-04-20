@@ -1,4 +1,5 @@
 require './instance_counter.rb'
+require './validator.rb'
 require './company.rb'
 require './station.rb'
 require './train.rb'
