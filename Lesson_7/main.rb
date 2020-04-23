@@ -8,6 +8,7 @@ require './train_cargo.rb'
 require './train_passenger.rb'
 require './carriage.rb'
 require './carriage_cargo.rb'
+require './carriage_passenger.rb'
 
 #Данные для теста
 station1 = Station.new('Москва')
@@ -127,13 +128,15 @@ while x != 0
         when 1
         puts 'Какой размер вагона?'
         volume = gets.chomp.to_i
-        Train.trains[train - 1].add_carriage(Carriage.new(Train.trains[train - 1].type, volume))
-        Train.trains[train - 1].carriage_block {|zz, index| puts "Вагон №:#{index+1} - вместительность #{zz.volume}"}
+        Train.trains[train - 1].add_carriage(CargoCarriage.new(Train.trains[train - 1].type, volume)) if Train.trains[train - 1].class == CargoTrain
+        Train.trains[train - 1].add_carriage(PassengerCarriage.new(Train.trains[train - 1].type, volume)) if Train.trains[train - 1].class == PassengerTrain
+        Train.trains[train - 1].add_carriage(Cargo.new(Train.trains[train - 1].type, volume)) if Train.trains[train - 1].class == Train
+        Train.trains[train - 1].carriage_block {|zz, index| puts "Вагон №:#{index+1}, тип: #{zz.class} - вместительность #{zz.volume}"}
         when 2
         puts 'Какой вагон удалить?'
         carriage = gets.chomp.to_i
         Train.trains[train - 1].remove_carriage(Train.trains[train - 1].carriages[carriage-1]) if Train.trains[train - 1].carriages[0]
-        Train.trains[train - 1].carriage_block {|zz, index| puts "Вагон №:#{index+1} - вместительность #{zz.volume}"}
+        Train.trains[train - 1].carriage_block {|zz, index| puts "Вагон №:#{index+1}, тип: #{zz.class} - вместительность #{zz.volume}"}
         end
     when 7
       Train.trains_names

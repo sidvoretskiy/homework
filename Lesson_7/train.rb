@@ -12,7 +12,7 @@ class Train
     @type = type
     validate!
     @speed = 0
-    @@trains_hash.store(self.number, self)
+    @@trains_hash[self.number] = self
     @@trains << self
     register_instance
   end
@@ -22,13 +22,13 @@ class Train
   end
 
   def add_carriage(carriage)
-      raise "Нельзя прицеплять вагоны во время движения" if speed != 0
-      self.carriages << carriage if carriage.type == self.type
+    raise "Нельзя прицеплять вагоны во время движения" if speed != 0
+    self.carriages << carriage if carriage.type == self.type
   end
 
   def remove_carriage(carriage)
-      raise "Нельзя отцеплять вагоны во время движения" if speed != 0
-      self.carriages.delete(carriage)
+    raise "Нельзя отцеплять вагоны во время движения" if speed != 0
+    self.carriages.delete(carriage)
   end
 
   def route=(route)
