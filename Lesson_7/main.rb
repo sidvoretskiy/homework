@@ -123,7 +123,8 @@ while x != 0
       puts 'Список вагонов поезда' if Train.trains[train - 1].carriages != []
       Train.trains[train - 1].carriage_block {|zz, index| puts "Вагон №:#{index+1} - вместительность #{zz.volume}"}
       puts "1 - Добавить вагон"
-      puts "2 - удалить вагон"
+      puts "2 - Удалить вагон"
+      puts "3 - Загрузить вагон"
       case gets.chomp.to_i
         when 1
         puts 'Какой размер вагона?'
@@ -137,7 +138,19 @@ while x != 0
         carriage = gets.chomp.to_i
         Train.trains[train - 1].remove_carriage(Train.trains[train - 1].carriages[carriage-1]) if Train.trains[train - 1].carriages[0]
         Train.trains[train - 1].carriage_block {|zz, index| puts "Вагон №:#{index+1}, тип: #{zz.class} - вместительность #{zz.volume}"}
+        when 3
+        Train.trains[train - 1].carriage_block {|zz, index| puts "Вагон №:#{index+1}, тип: #{zz.class} - вместительность #{zz.volume}, занято: #{zz.loaded}"}
+        puts "В какой вагон загружаем?"
+        carriage = gets.chomp.to_i
+        if Train.trains[train - 1].class == CargoTrain
+          puts "Какой объем загрузить?"
+          volume = gets.chomp.to_i
+          Train.trains[train - 1].carriages[carriage-1].load(volume)
+        else
+          Train.trains[train - 1].carriages[carriage-1].load
         end
+        end
+        Train.trains[train - 1].carriage_block {|zz, index| puts "Вагон №:#{index+1}, тип: #{zz.class} - вместительность #{zz.volume}, занято: #{zz.loaded}"}
     when 7
       Train.trains_names
       puts 'Выберите поезд который будем двигать'
