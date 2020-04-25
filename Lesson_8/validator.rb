@@ -5,7 +5,7 @@ module Validator
   def self.included(base)
     base.send :include, InstanceMethods
   end
-
+  # Module for validation method
   module InstanceMethods
     def valid?
       validate!
