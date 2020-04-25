@@ -13,9 +13,7 @@ class Carriage
   end
 
   def load(volume)
-    unless volume <= empty_volume
-      raise "В вагоне недостаточно места. На текущий момент занято #{@loaded}"
-    end
+    raise "В вагоне недостаточно места. На текущий момент занято #{@loaded}" unless volume <= empty_volume
 
     @loaded += volume
   end
