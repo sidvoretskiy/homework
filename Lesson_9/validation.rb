@@ -22,7 +22,7 @@ module Validation
       attr&.match?(formate)
     end
 
-    def type(attr, type)
+    def valid_type(attr, type)
       attr.class == type
     end
   end
@@ -36,7 +36,7 @@ module Validation
           validation.each_pair do |val_type, val_options|
             next if self.class.send val_type, attr_value, val_options
 
-            raise "Attribute: #{attr_name} validation type: #{val_type}  #{'validation options: ' if val_options}#{val_options}"
+            raise "Attribute: #{attr_name} validation type: #{val_type} options: {#{val_options}"
           end
         end
       end
