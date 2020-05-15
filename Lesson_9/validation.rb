@@ -50,12 +50,3 @@ module Validation
     end
   end
 end
-
-# class Test
-#   include Validation
-
-#   attr_accessor :aa, :bb
-#   validate :aa, :presence
-#   validate :aa, :format, /[a-zа-я0-9]{3}-?[a-zа-я0-9]{2}$/i.freeze
-#   validate :aa, :type, String
-# end

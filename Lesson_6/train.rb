@@ -73,13 +73,6 @@ class Train
     @@trains_hash[number]
   end
 
-  def valid?
-    validate!
-    true
-    rescue 
-    false
-  end
-
   protected
 
   def validate!
